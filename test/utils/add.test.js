@@ -12,7 +12,7 @@ describe('add - number adding test', () => {
       description: 'when number have 1 and 2, then adding result is 3',
       number1: 1,
       number2: 2,
-      expected: 4
+      expected: 3
     }
   ]
 
