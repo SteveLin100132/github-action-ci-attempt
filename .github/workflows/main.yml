@@ -6,6 +6,7 @@ on:
 
 jobs:
   unit-test:
+    name: Run Unit Test
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true  # 一個 job fail，其他 job 會被取消
