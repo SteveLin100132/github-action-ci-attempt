@@ -24,6 +24,16 @@ jobs:
 
       - name: Run unit tests
         run: npm run test
+      
+      - name: Send Slack notification on failure
+        uses: slackapi/slack-github-action@v1.23.0
+        if: failure()
+        run: |
+          curl -X POST -H 'Content-type: application/json' \
+          --data '{
+            "text": ":x: Unit tests failed in `${{ github.repository }}` on branch `${{ github.ref_name }}` by `${{ github.actor }}`.\nCheck run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          }' \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
 
   build-image:
     name: Build and Push Docker Image
