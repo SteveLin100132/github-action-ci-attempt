@@ -43,7 +43,7 @@ jobs:
 
       - name: Set image tag
         id: tag
-        run: echo "TAG=$APP_VERSION" >> $GITHUB_ENV
+        run: echo "TAG=${{ vars.APP_VERSION }}" >> $GITHUB_ENV
 
       - name: Lowercase github.actor
         run: echo "LOWER_ACTOR=${GITHUB_ACTOR,,}" >> $GITHUB_ENV
@@ -52,8 +52,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/$LOWER_ACTOR/$IMAGE_NAME:${{ env.TAG }} .
+          docker build -t ghcr.io/$LOWER_ACTOR/${{ vars.IMAGE_NAME }}:${{ env.TAG }} .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/$LOWER_ACTOR/$IMAGE_NAME:${{ env.TAG }}
+          docker push ghcr.io/$LOWER_ACTOR/${{ vars.IMAGE_NAME }}:${{ env.TAG }}
