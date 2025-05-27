@@ -1,0 +1,20 @@
+{
+  "reporters": [
+    "default",
+    [
+      "./node_modules/jest-html-reporters",
+      {
+        "pageTitle": "Test Report",
+        "publicPath": "./coverage",
+        "filename": "test-dashboard.html"
+      }
+    ],
+    [
+      "./node_modules/jest-html-reporter",
+      {
+        "pageTitle": "Test Report",
+        "outputPath": "./coverage/test-report.html"
+      }
+    ]
+  ]
+}
