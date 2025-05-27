@@ -41,12 +41,9 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.CR_PAT }}
 
-      - name: Set IMAGE_NAME env variable from secret
-        run: echo "IMAGE_NAME=stevelin100132-testing-app" >> $GITHUB_ENV
-
       - name: Set image tag
         id: tag
-        run: echo "TAG=latest" >> $GITHUB_ENV
+        run: echo "TAG=$APP_VERSION" >> $GITHUB_ENV
 
       - name: Lowercase github.actor
         run: echo "LOWER_ACTOR=${GITHUB_ACTOR,,}" >> $GITHUB_ENV
@@ -55,8 +52,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ghcr.io/$LOWER_ACTOR/${{ env.IMAGE_NAME }}:${{ env.TAG }} .
+          docker build -t ghcr.io/$LOWER_ACTOR/$IMAGE_NAME:${{ env.TAG }} .
 
       - name: Push Docker image
         run: |
-          docker push ghcr.io/$LOWER_ACTOR/${{ env.IMAGE_NAME }}:${{ env.TAG }}
+          docker push ghcr.io/$LOWER_ACTOR/$IMAGE_NAME:${{ env.TAG }}
